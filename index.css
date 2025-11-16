@@ -4,8 +4,8 @@
 }
 
 h1 {
-  font-size: 200%;
-  letter-spacing: 10px;
+  font-size: 40px;
+  letter-spacing: 5px;
   color: white;
 
   line-height: 500%;
@@ -20,7 +20,7 @@ h1 {
 }
 
 h3 {
-  font-size: 100%;
+  font-size: 20px;
   color: aqua;
   letter-spacing: 10px;
   text-align: center;
@@ -36,8 +36,16 @@ body {
 }
 
 ul {
-  text-align: center;
   list-style-type: none;
+}
+
+li {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
 }
 
 a {
@@ -62,6 +70,9 @@ a:active {
   margin: 20%;
   margin-top: 100px;
   align-self: center;
+}
+#project-hr1 {
+  opacity: 0.5;
 }
 
 @keyframes text1 {
