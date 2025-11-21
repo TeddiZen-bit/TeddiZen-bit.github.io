@@ -4,19 +4,21 @@
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 30px;
   letter-spacing: 5px;
   color: white;
 
-  line-height: 500%;
+  line-height: 200px;
 
   text-shadow: 0 0 10px aqua, 0 0 20px aqua, 0 0 40px aqua, 0 0 80px aqua;
 
   animation: text1 5s linear infinite;
 
-  display: flex;
+  text-align: center;
+
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 h3 {
@@ -30,7 +32,6 @@ h3 {
 }
 
 body {
-  min-height: 100vh;
   background-image: url(./272eba10d6347c017f7f20b330a9f274e5efcb34.jpg);
   background-position: center;
 }
@@ -39,37 +40,59 @@ ul {
   list-style-type: none;
 }
 
-li {
+li.project-li {
   display: flex;
-  height: 60px;
   align-items: center;
   justify-content: center;
   text-align: center;
-  flex-wrap: wrap;
+
+  overflow: hidden;
+  padding: 15px;
+
+  height: 40px;
 }
 
 a {
   text-decoration: none;
-  font-size: 30px;
+  font-size: 20px;
   color: azure;
 }
 
-a:hover {
+.project-a:hover {
   color: chocolate;
+  font-size: 25px;
   transition: 0.5s;
 }
 
-a:active {
+.project-a:active {
   color: yellow;
   transition: 0s;
+}
+#bilibili-index {
+  width: 20px;
+
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+#bilibili-index-div {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 20%);
+
+  position: relative;
+  margin: 0 auto;
 }
 
 .project {
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 20%);
-  margin: 20%;
-  margin-top: 100px;
-  align-self: center;
+  margin: 100px;
+  margin-left: 20%;
+  margin-right: 20%;
+  overflow: hidden;
 }
 #project-hr1 {
   opacity: 0.5;
