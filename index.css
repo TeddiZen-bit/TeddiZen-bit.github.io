@@ -102,6 +102,7 @@ a {
   left: 50px;
   bottom: 150px;
   transition: 0.2s;
+  z-index: 100;
 }
 #bilibili-index-div:hover,
 #bilibili-index-div:active {
@@ -158,15 +159,16 @@ footer p {
   display: flex;
   flex-wrap: wrap;
   justify-items: center;
-  justify-content: space-evenly;
+  justify-content: left;
   align-content: space-evenly;
 }
 .inner {
   background-color: white;
   height: 300px;
-  width: 300px;
+  width: 250px;
   margin: 30px;
   border-radius: 20px;
+  background-image:linear-gradient(to top,aqua,skyblue);
   overflow: hidden;
   border: black solid 5px;
   z-index: 1;
@@ -176,25 +178,16 @@ footer p {
   justify-content: center;
   align-items: center;
 
-  transition: 0.2s;
-}
-.bilibili-work .inner::after {
-  content: "";
-  display: block;
-  position: absolute;
-  height: 310px;
-  width: 310px;
-  box-shadow: 4px 4px 16px gray;
-  border-radius: 20px;
-  transition: 0.2s;
-  z-index: -1;
+  transition-duration: 0.2s;
+  transition-property: all;
 }
 .inner:hover,
 .inner:active {
-  transform: scale(0.98);
-  transition: 0.2s;
+  transform: perspective(1000px) rotateX(30deg);
+  box-shadow: 0 35px 35px -8px gray;
   z-index: -1;
 }
+  
 .video-img {
   width: 80%;
   border-radius: 10px;
@@ -208,6 +201,72 @@ footer p {
   margin: 10px 10%;
   border-radius: 50px; /* 设置圆角半径，形成椭圆 */
   transition: background-color 0.3s; /* 添加过渡效果 */
+}
+.Page3{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.myself{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.myself .head{
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  position: absolute;
+  bottom: 20px;
+  opacity: 0%;
+  z-index: -1;
+
+  transition-property: all;
+  transition-duration: 1s;
+}
+.myself .name{
+  display: block;
+  color: white;
+  font-size: 30px;
+
+  position:absolute;
+  bottom: 10px;
+
+  transition-property: all;
+  transition-duration: 1s;
+  z-index: 1;
+}
+.myself .foot{
+  width: 300px;
+  height: 60px;
+  opacity: 50%;
+  background-color: rgb(0, 106, 255);
+  box-shadow: 0 0 12px rgb(0, 106, 255);
+
+  transition-property: all;
+  transition-duration: 1s;
+}
+.myself .foot:hover{
+  background-color: aqua;
+  transform:perspective(500px) rotateX(60deg);
+  box-shadow: 0 35px 35px -8px aqua;
+  opacity: 100%;
+}
+.myself:hover .head{
+  width: 200px;
+  height: 200px;
+  transform: translateY(-85px);
+  opacity: 100%;
+  box-shadow: 0 0 10px aqua;
+}
+.myself:hover .name{
+  transform: translateY(-45px);
+  text-shadow: 0 0 10px aqua;
 }
 @keyframes text1 {
   to {
