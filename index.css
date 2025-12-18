@@ -9,18 +9,44 @@ header {
 
     position: fixed;
     top: 0px;
-    z-index: 10;
+    z-index: 100;
 
     box-shadow: 0 8px 16px black;
 }
 
-header p {
+header .myTitle {
     position: absolute;
     left: 50px;
     top: 20px;
     font-size: 30px;
     color: aqua;
     text-shadow: 0 0 10px aqua, 0 0 20px aqua;
+}
+
+.time {
+    height: 80px;
+    width: 200px;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.time div {
+    height: 40px;
+    width: 40px;
+    background-color: rgba(0, 0, 0, 75%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 0 0 10px black;
+}
+
+.time div p {
+    color: antiquewhite;
+    font-size: 20px;
 }
 
 h1 {
@@ -138,11 +164,15 @@ footer {
     background-color: rgba(255, 255, 255, 50%);
 
     box-shadow: 0 -8px 16px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 footer p {
     color: white;
     text-align: center;
-    line-height: 100px;
 }
 
 .Page3 {
@@ -150,6 +180,7 @@ footer p {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 .bilibili-work {
     margin: auto;
@@ -272,8 +303,10 @@ footer p {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 .imgBox {
+    width: 700px;
     background-color: rgba(255, 255, 255, 20%);
     border-radius: 15px;
     overflow: hidden;
@@ -286,21 +319,14 @@ footer p {
 }
 .imgBox .imgLis {
     display: flex;
-    height: 50px;
-    width: 120px;
+    width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
     color: white;
     border-bottom: 1px white solid;
 }
 .imgBox .imgLisChange {
-    display: flex;
-    height: 50px;
-    width: 120px;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border-bottom: 1px white solid;
     background-image: linear-gradient(rgba(0, 0, 0, 0), aqua);
     border-bottom: aqua 1px solid;
 }
@@ -321,7 +347,7 @@ footer p {
     justify-content: center;
 }
 .imgBox .img img {
-    width: 720px;
+    width: 100%;
 }
 
 @keyframes text1 {
