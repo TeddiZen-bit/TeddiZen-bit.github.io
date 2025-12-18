@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .windows {
+                position: absolute;
+                background-color: rgb(10, 0, 192);
+                z-index: 4;
+                border-radius: 20px;
+                border: rgb(10, 0, 192) solid 5px;
+                width: 590px;
+                height: 440px;
+                left: 500px;
+                top: 300px;
+                box-shadow: 0 0 10px black;
+                display: none;
+            }
+            .blackBack {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 3;
+                background-color: rgba(0, 0, 0, 0.345);
+                height: 100vh;
+                width: 100vw;
+                display: none;
+            }
+            .titleDiv {
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .titleDiv h1 {
+                color: white;
+            }
+            .contDiv {
+                background-color: antiquewhite;
+                height: 390px;
+                width: auto;
+                border-radius: 20px;
+            }
+            .toff {
+                position: absolute;
+                right: 15px;
+                top: 10px;
+                background-color: red;
+                border-radius: 5px;
+                height: 30px;
+                width: 30px;
+                text-align: center;
+                border: white solid 3px;
+                cursor: pointer;
+            }
+            .toff span {
+                position: relative;
+                top: -10px;
+                color: white;
+                font-size: 30px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <button class="open">点我打开窗口</button>
+        <div class="blackBack"></div>
+        <div class="windows">
+            <div class="toff"><span>x</span></div>
+            <div class="titleDiv">
+                <h1>我是窗口</h1>
+            </div>
+            <div class="contDiv">
+                <p class="content">我是内容</p>
+            </div>
+        </div>
+        <script>
+            var butt = document.querySelector(".open");
+            var toff = document.querySelector(".toff");
+            var windows = document.querySelector(".windows");
+            var back = document.querySelector(".blackBack");
+            var head = windows.querySelector(".titleDiv");
+            butt.addEventListener("click", () => {
+                windows.style.display = "block";
+                back.style.display = "block";
+            });
+            toff.addEventListener("click", () => {
+                windows.style.display = "none";
+                back.style.display = "none";
+            });
+            head.addEventListener("mousedown", (e) => {
+                console.log(windows.offsetX);
+                var x = e.offsetX;
+                var y = e.offsetY;
+                function move(e) {
+                    windows.style.left = e.pageX - x + "px";
+                    windows.style.top = e.pageY - y + "px";
+                }
+                head.addEventListener("mousemove", move);
+                head.addEventListener("mouseup", function up(e) {
+                    head.removeEventListener("mousemove", move);
+                    head.removeEventListener("mouseup", up);
+                });
+            });
+        </script>
+    </body>
+</html>
