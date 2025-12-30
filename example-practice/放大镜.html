@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .imgDiv {
+                position: absolute;
+                top: 300px;
+                left: 30px;
+            }
+            .imgDiv img {
+                width: 480px;
+                box-shadow: 0 10px 10px black;
+            }
+            .enLarge img {
+                width: 4320px;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .enLarge {
+                width: 720px;
+                height: 720px;
+                overflow: hidden;
+                border: solid 2px black;
+                position: absolute;
+                top: 100px;
+                left: 530px;
+                box-shadow: 0 10px 10px black, 0 20px 40px black;
+                display: none;
+            }
+            .glass {
+                width: 80px;
+                height: 80px;
+                background-color: rgba(255, 255, 0, 0.5);
+                position: absolute;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="imgDiv">
+            <div class="glass"></div>
+            <img
+                src="../img/6a534d05945fe2177a0d61d9108ec769587112263.jpg"
+                alt=""
+            />
+        </div>
+        <div class="enLarge">
+            <img
+                src="../img/6a534d05945fe2177a0d61d9108ec769587112263.jpg"
+                alt=""
+            />
+        </div>
+        <script>
+            window.addEventListener("load", () => {
+                var glass = document.querySelector(".glass");
+                var baseImg = document.querySelector(".imgDiv");
+                var afterImgBlock = document.querySelector(".enLarge");
+                var afterImg = afterImgBlock.querySelector("img");
+                baseImg.addEventListener("mouseover", () => {
+                    afterImgBlock.style.display = "block";
+                    glass.style.display = "block";
+                });
+                baseImg.addEventListener("mouseout", () => {
+                    afterImgBlock.style.display = "none";
+                    glass.style.display = "none";
+                });
+                baseImg.addEventListener("mousemove", (e) => {
+                    glass.style.left = e.pageX - baseImg.offsetLeft - 40 + "px";
+                    glass.style.top = e.pageY - baseImg.offsetTop - 40 + "px";
+                    console.log(baseImg.querySelector("img").height);
+                    console.log(baseImg.offsetHeight);
+                    if (e.pageX < 70) {
+                        glass.style.left = "0px";
+                    }
+                    if (e.pageX > 470) {
+                        glass.style.left = "400px";
+                    }
+                    if (e.pageY < 340) {
+                        glass.style.top = "0px";
+                    }
+                    if (e.pageY > baseImg.offsetHeight + 245) {
+                        glass.style.top = baseImg.offsetHeight - 85 + "px";
+                    }
+                    afterImg.style.top = -glass.offsetTop * 9 + "px";
+                    afterImg.style.left = -glass.offsetLeft * 9 + "px";
+                });
+            });
+        </script>
+    </body>
+</html>

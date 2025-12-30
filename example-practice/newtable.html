@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                width: 100vw;
+                height: 100vh;
+            }
+            .freeTable {
+                text-align: center;
+            }
+            table {
+                background-color: rgba(0, 0, 0, 20%);
+                margin: 300px auto;
+                width: 500px;
+            }
+            td,
+            th {
+                border: 1px solid black;
+                margin: 0;
+                height: 40px;
+            }
+            thead tr {
+                height: 50px;
+            }
+            .input {
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="freeTable">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>属性</th>
+                        <th>年龄</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="input">
+            <form action="">
+                姓名：<input class="uName" type="text" name="uName" />
+                属性：<input class="num" type="text" name="num" /> 数字：<input
+                    class="age"
+                    type="text"
+                    name="age"
+                />
+                <button type="submit" class="submit">提交</button>
+            </form>
+        </div>
+        <script>
+            const tbody = document.querySelector("tbody");
+            const initData = [
+                {
+                    uName: "测试",
+                    num: "20000",
+                    age: 19,
+                },
+            ];
+            //数据转化为字符串data
+            data = JSON.stringify(initData) || [];
+            //字符串存入内存
+            localStorage.setItem("data", data);
+            //从内存中取出，转化为数组arr
+            const arr = JSON.parse(localStorage.getItem("data"));
+            console.log(arr);
+            function rander() {
+                const tr = arr.map((item, i) => {
+                    return `
+                    <tr>
+                        <td>${item.uName}</td>
+                        <td>${item.num}</td>
+                        <td>${item.age}</td>
+                        <td><a href="javascript:; data-id="${i}">删除 </a></td>
+                    </tr>
+                    `;
+                });
+                //字符串拼接
+                tbody.innerHTML = tr.join("");
+            }
+            rander();
+
+            //输入信息模块
+            const form = document.querySelector("form");
+            const uName = document.querySelector(".uName");
+            const num = document.querySelector(".num");
+            const age = document.querySelector(".age");
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                arr.push({
+                    uName: uName.value,
+                    num: num.value,
+                    age: age.value,
+                });
+                localStorage.setItem("data", JSON.stringify(arr));
+                rander();
+                form.reset();
+            });
+
+            //删除信息模块
+            const del = document.querySelector.
+        </script>
+    </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>动态表格</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                width: 100vw;
+                height: 100vh;
+            }
+            .freeTable {
+                text-align: center;
+            }
+            table {
+                background-color: rgba(0, 0, 0, 20%);
+                margin: 300px auto;
+                width: 500px;
+            }
+            td,
+            th {
+                border: 1px solid black;
+                margin: 0;
+                height: 40px;
+            }
+            thead tr {
+                height: 50px;
+            }
+            .input {
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="freeTable">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>属性</th>
+                        <th>数字</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="input">
+            <form action="">
+                姓名：<input class="uName" type="text" /> 属性：<input
+                    class="tag"
+                    type="text"
+                />
+                数字：<input class="num" type="text" />
+                <button type="submit" class="submit">提交</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        const form = document.querySelector("form");
+        var info = [
+            {
+                name: "test",
+                tags: "tag",
+                score: 1,
+            },
+        ];
+        const tbody = document.querySelector("tbody");
+        for (let i = 0; i < info.length; i++) {
+            let tr = document.createElement("tr");
+            tbody.appendChild(tr);
+            for (let k in info[i]) {
+                let td = document.createElement("td");
+                td.innerHTML = info[i][k];
+                tr.appendChild(td);
+            }
+            let del = document.createElement("td");
+            tr.appendChild(del);
+            del.innerHTML += '<a href="javascript:;">删除 </a>';
+        }
+        var delInfo = document.querySelectorAll("a");
+        for (var i = 0; i < delInfo.length; i++) {
+            delInfo[i].onclick = function () {
+                tbody.removeChild(this.parentNode.parentNode);
+            };
+        }
+        let sub = document.querySelector(".submit");
+        sub.onclick = function () {
+            let info = {
+                addName: "",
+                addTag: "",
+                addText: "",
+            };
+            info.addName = document.querySelector(".uName").value;
+            info.addTag = document.querySelector(".tag").value;
+            info.addText = document.querySelector(".num").value;
+            for (let k in info) {
+                if (info[k] == "") {
+                    alert("请完全填写信息！");
+                    return 0;
+                }
+            }
+            console.log(info);
+            let tbody = document.querySelector("tbody");
+            let tr = document.createElement("tr");
+            tbody.appendChild(tr);
+            for (let k in info) {
+                let td = document.createElement("td");
+                td.innerHTML = info[k];
+                tr.appendChild(td);
+            }
+            let del = document.createElement("td");
+            tr.appendChild(del);
+            del.innerHTML += '<a href="javascript:;">删除 </a>';
+            var delInfo = document.querySelectorAll("a");
+            for (var i = 0; i < delInfo.length; i++) {
+                delInfo[i].onclick = function () {
+                    tbody.removeChild(this.parentNode.parentNode);
+                };
+            }
+            form.reset();
+        };
+    </script>
+</html>

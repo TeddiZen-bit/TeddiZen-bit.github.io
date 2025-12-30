@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .serchCity {
+                height: 500px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            select {
+                height: 30px;
+                width: 100px;
+                margin: 0 20px;
+                background-color: rgba(128, 128, 128, 0.304);
+                border-radius: 5px;
+                border: 0;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="serchCity">
+            <select name="province" id="province">
+                <option value="省份">省份</option>
+            </select>
+            <select name="city" id="city">
+                <option value="城市">城市</option>
+            </select>
+            <select name="area" id="area">
+                <option value="县区">县区</option>
+            </select>
+        </div>
+        <script>
+            axios({
+                url: "https://hmajax.itheima.net/api/province",
+            }).then((result) => {
+                const proStr = result.data.list
+                    .map((item) => {
+                        return `
+                <option value="${item}">${item}</option>
+            `;
+                    })
+                    .join("");
+                document.querySelector("#province").innerHTML = '<option value="省份">省份</option>' + proStr;
+            });
+
+            document.querySelector("#province").addEventListener("change", async (e) => {
+                console.log(e.target.value);
+                const result = await axios({
+                    url: "https://hmajax.itheima.net/api/city",
+                    params: { pname: e.target.value },
+                });
+                const cityStr = (document.querySelector("#city").innerHTML = result.data.list.map((item) => {
+                    return `
+                <option value="${item}">${item}</option>
+            `;
+                })).join("");
+                document.querySelector("#city").innerHTML = '<option value="城市">城市</option>' + cityStr;
+                document.querySelector("#area").innerHTML = '<option value="县区">县区</option>';
+            });
+            document.querySelector("#city").addEventListener("change", async (e) => {
+                const result = await axios({
+                    url: "https://hmajax.itheima.net/api/area",
+                    params: { pname: document.querySelector("#province").value, cname: e.target.value },
+                });
+                const areaStr = result.data.list
+                    .map((item) => {
+                        return `
+                    <option value="${item}">${item}</option>
+                    `;
+                    })
+                    .join("");
+                document.querySelector("#area").innerHTML = '<option value="县区">县区</option>' + areaStr;
+            });
+        </script>
+    </body>
+</html>

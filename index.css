@@ -1,0 +1,447 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+header {
+    height: 80px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 50%);
+
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+
+    box-shadow: 0 8px 16px gray;
+}
+
+header .myTitle {
+    position: absolute;
+    left: 50px;
+    top: 20px;
+    font-size: 30px;
+    color: aqua;
+    text-shadow: 0 0 10px aqua, 0 0 20px aqua;
+}
+
+.time {
+    height: 80px;
+    width: 200px;
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.time div {
+    height: 40px;
+    width: 40px;
+    background-color: rgba(0, 0, 0, 75%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 0 0 10px black;
+}
+
+.time div p {
+    color: antiquewhite;
+    font-size: 20px;
+}
+
+.backHead {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    right: 20px;
+    bottom: 110px;
+    background-color: rgba(255, 255, 255, 20%);
+    text-align: center;
+    line-height: 18px;
+    border-radius: 5px;
+    z-index: 10;
+    cursor: pointer;
+}
+.backHead span {
+    font-size: 13px;
+    color: gray;
+}
+
+h1 {
+    margin-top: 80px;
+    font-size: 30px;
+    letter-spacing: 5px;
+    color: white;
+
+    line-height: 200px;
+
+    text-shadow: 0 0 10px aqua, 0 0 20px aqua, 0 0 40px aqua, 0 0 80px aqua;
+
+    animation: text1 5s linear infinite;
+
+    text-align: center;
+}
+
+h3 {
+    font-size: 20px;
+    color: aqua;
+    letter-spacing: 10px;
+    text-align: center;
+    line-height: 200%;
+
+    text-shadow: 0 0 10px aqua, 0 0 20px aqua;
+}
+
+body {
+    background-image: url(./background.png);
+    background-position: center;
+    overflow-x: hidden;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li.project-li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    overflow: hidden;
+    padding: 15px;
+
+    height: 40px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 20px;
+    color: azure;
+}
+
+.project-a:hover {
+    color: chocolate;
+    font-size: 25px;
+    transition: 0.5s;
+}
+
+.project-a:active {
+    color: yellow;
+    transition: 0s;
+}
+#bilibili-index {
+    width: 40px;
+    position: relative;
+    left: 20px;
+    top: 20px;
+}
+
+#bilibili-index-div {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 20%);
+
+    position: fixed;
+    left: 50px;
+    bottom: 150px;
+    transition: 0.2s;
+    z-index: 100;
+}
+#bilibili-index-div:hover,
+#bilibili-index-div:active {
+    background-color: rgba(255, 255, 255, 50%);
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+.bilibili-index-text {
+    font-size: 13px;
+    width: 80px;
+    position: absolute;
+    bottom: -20px;
+    left: 5px;
+}
+
+.project {
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 20%);
+    margin: 100px;
+    margin-left: 20%;
+    margin-right: 20%;
+    overflow: hidden;
+    box-shadow: 0 0 24px rgba(255, 255, 255, 20%);
+}
+#project-hr1 {
+    opacity: 0.5;
+}
+footer {
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 50%);
+
+    box-shadow: 0 -8px 16px gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+footer p {
+    color: white;
+    text-align: center;
+}
+
+.Page3 {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.bilibili-work {
+    margin: auto;
+    max-width: 1000px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    justify-content: center;
+    align-content: space-evenly;
+}
+.inner {
+    background-color: white;
+    height: 300px;
+    width: 250px;
+    margin: 30px;
+    border-radius: 20px;
+    background-image: linear-gradient(to top, aqua, skyblue);
+    overflow: hidden;
+    border: black solid 5px;
+    z-index: 1;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    transition-duration: 0.2s;
+    transition-property: all;
+}
+.a {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+}
+.inner:hover,
+.inner:active {
+    transform: perspective(1000px) rotateX(30deg);
+    box-shadow: 0 35px 35px -8px gray;
+    z-index: -1;
+}
+
+.video-img {
+    width: 80%;
+    border-radius: 10px;
+}
+.video-title {
+    font-size: 16px;
+    display: block;
+    text-align: center;
+    background-image: radial-gradient(rgb(105, 105, 105), rgb(0, 0, 0) 230px);
+    padding: 10px 10px;
+    margin: 10px 10%;
+    border-radius: 50px; /* 设置圆角半径，形成椭圆 */
+    transition: background-color 0.3s; /* 添加过渡效果 */
+}
+.myself {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: -100px;
+}
+.myself .head {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    position: absolute;
+    opacity: 0%;
+    z-index: -1;
+
+    transition-property: all;
+    transition-duration: 1s;
+}
+.myself .name {
+    display: block;
+    color: white;
+    font-size: 30px;
+
+    position: absolute;
+
+    transition-property: all;
+    transition-duration: 1s;
+    z-index: 1;
+}
+.myself .foot {
+    width: 300px;
+    height: 60px;
+    opacity: 50%;
+    background-color: rgb(0, 106, 255);
+    box-shadow: 0 0 12px rgb(0, 106, 255);
+
+    transition-property: all;
+    transition-duration: 1s;
+}
+.myself .foot:hover {
+    background-color: aqua;
+    transform: perspective(500px) rotateX(60deg);
+    box-shadow: 0 35px 35px -8px aqua;
+    opacity: 100%;
+}
+.myself:hover .head {
+    width: 200px;
+    height: 200px;
+    transform: translateY(-180px);
+    opacity: 100%;
+    box-shadow: 0 0 10px aqua;
+}
+.myself:hover .name {
+    transform: translateY(-45px);
+    text-shadow: 0 0 10px aqua;
+}
+
+.Page4 {
+    height: 700px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.imgBox {
+    width: 700px;
+    background-color: rgba(255, 255, 255, 20%);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 50%);
+}
+.imgBox .tabLis {
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.imgBox .imgLis {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-bottom: 1px white solid;
+}
+.imgBox .imgLisChange {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), aqua);
+    border-bottom: aqua 1px solid;
+}
+.imgBox .imgLis:hover,
+.imgBox .imgLisChange:hover {
+    border-bottom: 1px aqua solid;
+    background-color: rgba(255, 255, 255, 20%);
+    cursor: pointer;
+}
+.imgBox .tabCont {
+    height: 480px;
+    display: flex;
+    position: relative;
+}
+.imgBox .img {
+    display: none;
+    align-content: center;
+    justify-content: center;
+}
+.imgBox .img img {
+    width: 100%;
+}
+
+.Page5 {
+    height: 700px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.scrollImg {
+    width: 720px;
+    height: 450px;
+    border-radius: 10px;
+    background-color: aqua;
+    position: relative;
+    overflow: hidden;
+}
+.scrollImg .imgUl {
+    display: flex;
+    position: absolute;
+    align-items: center;
+}
+.scrollImg img {
+    height: 450px;
+    width: 720px;
+}
+.buttR {
+    background-color: rgba(0, 0, 0, 75%);
+    cursor: pointer;
+    color: white;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    right: 10px;
+    top: 200px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    z-index: 2;
+}
+.buttL {
+    background-color: rgba(0, 0, 0, 75%);
+    cursor: pointer;
+    color: white;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left: 10px;
+    top: 200px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    z-index: 2;
+}
+.circleUl {
+    height: 30px;
+    width: 720px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circleUl .circle {
+    height: 10px;
+    width: 10px;
+    margin: auto 5px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+}
+@keyframes text1 {
+    to {
+        filter: hue-rotate(360deg);
+    }
+}

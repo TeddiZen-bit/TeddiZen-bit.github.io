@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>轮播图点击切换</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            .slider {
+                width: 560px;
+                height: 400px;
+                overflow: hidden;
+            }
+
+            .slider-wrapper {
+                width: 100%;
+                height: 320px;
+            }
+
+            .slider-wrapper img {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            .slider-footer {
+                height: 80px;
+                background-color: rgb(100, 67, 68);
+                padding: 12px 12px 0 12px;
+                position: relative;
+            }
+
+            .slider-footer .toggle {
+                position: absolute;
+                right: 0;
+                top: 12px;
+                display: flex;
+            }
+
+            .slider-footer .toggle button {
+                margin-right: 12px;
+                width: 28px;
+                height: 28px;
+                appearance: none;
+                border: none;
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .slider-footer .toggle button:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .slider-footer p {
+                margin: 0;
+                color: #fff;
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .slider-indicator {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                display: flex;
+                align-items: center;
+            }
+
+            .slider-indicator li {
+                width: 8px;
+                height: 8px;
+                margin: 4px;
+                border-radius: 50%;
+                background: #fff;
+                opacity: 0.4;
+                cursor: pointer;
+            }
+
+            .slider-indicator li.active {
+                width: 12px;
+                height: 12px;
+                opacity: 1;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="slider">
+            <div class="slider-wrapper">
+                <img src="./images/slider01.jpg" alt="" />
+            </div>
+            <div class="slider-footer">
+                <p>对人类来说会不会太超前了？</p>
+                <ul class="slider-indicator">
+                    <li class="active"></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <div class="toggle">
+                    <button class="prev">&lt;</button>
+                    <button class="next">&gt;</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            // 1. 初始数据
+            const sliderData = [
+                {
+                    url: "./img/1868046cd7d046b0e8868136e7d2b089587112263.jpg",
+                    title: "对人类来说会不会太超前了？",
+                    color: "rgb(100, 67, 68)",
+                },
+                {
+                    url: "./img/2d33a3fa408b1e1a65cab72e011ffe82be2710fc.png",
+                    title: "开启剑与雪的黑暗传说！",
+                    color: "rgb(43, 35, 26)",
+                },
+                {
+                    url: "./img/378d099da5307d4be6dabda57782c158587112263.jpg",
+                    title: "真正的jo厨出现了！",
+                    color: "rgb(36, 31, 33)",
+                },
+                {
+                    url: "./img/6a534d05945fe2177a0d61d9108ec769587112263.jpg",
+                    title: "李玉刚：让世界通过B站看到东方大国文化",
+                    color: "rgb(139, 98, 66)",
+                },
+                {
+                    url: "./img/7b9ca5b867a12e8c815c9b9e9e2e81be96378f55.png",
+                    title: "快来分享你的寒假日常吧~",
+                    color: "rgb(67, 90, 92)",
+                },
+                {
+                    url: "./img/f8f79b614d588c9edb00038db34cd989586a0c09.png",
+                    title: "哔哩哔哩小年YEAH",
+                    color: "rgb(166, 131, 143)",
+                },
+                {
+                    url: "./images/slider07.jpg",
+                    title: "一站式解决你的电脑配置问题！！！",
+                    color: "rgb(53, 29, 25)",
+                },
+                {
+                    url: "./images/slider08.jpg",
+                    title: "谁不想和小猫咪贴贴呢！",
+                    color: "rgb(99, 72, 114)",
+                },
+            ];
+            // 2. 获取相应的DOM元素
+            // 2.1 获取图片
+            const img = document.querySelector(".slider-wrapper img");
+            // 2.2 获取底部
+            const footer = document.querySelector(".slider-footer");
+            // 2.3 获取底部文字
+            const p = document.querySelector(".slider-footer p");
+            // 3. 点击右箭头切换图片
+            // 3.1 获取右箭头
+            const next = document.querySelector(".toggle .next");
+            // 3.2 声明一个变量i
+            let i = 0;
+            // 3.3 给右箭头添加点击事件
+            next.addEventListener("click", function () {
+                i++;
+                // 3.5如果图片切换到最后一张就让他回到第一张
+                if (i > sliderData.length - 1) i = 0;
+                // 4.1 调用函数
+                render(i);
+            });
+            // 4. 将重复的代码抽离出来封装成一个函数，等下左箭头可以重复利用
+            function render(i) {
+                // 3.4获取数组中的每一项
+                const obj = sliderData[i];
+                img.src = obj.url;
+                footer.style.background = obj.color;
+                p.innerHTML = obj.title;
+                // 3.6 获取到带有active类名的li，先将其删除
+                document
+                    .querySelector(".slider-indicator li.active")
+                    .classList.remove("active");
+                // 3.7 将active添加到自身
+                document
+                    .querySelector(`.slider-indicator li:nth-child(${i + 1})`)
+                    .classList.add("active");
+            }
+            // 5. 点击左箭头切换图片
+            // 5.1 获取左箭头
+            const prev = document.querySelector(".toggle .prev");
+            // 5.2 给左箭头添加点击事件
+            prev.addEventListener("click", function () {
+                i--;
+                // 5.3 如果点击左箭头切换到了第一张就让他回到最后一张
+                if (i < 0) i = sliderData.length - 1;
+                // 5.4 调用函数
+                render(i);
+            });
+            // 6. 自动播放
+            // 6.1 开启定时器，每隔一秒钟自动播放
+            let timerId = setInterval(function () {
+                // 6.2 模拟点击右箭头
+                next.click();
+            }, 1000);
+            // 7. 鼠标进入停止自动播放,鼠标离开开启自动播放
+            // 7.1 获取鼠标进入的大盒子
+            const slider = document.querySelector(".slider");
+            // 7.2 给大盒子添加鼠标经过的事件
+            slider.addEventListener("mouseenter", function () {
+                // 7.3 清除定时器
+                clearInterval(timerId);
+            });
+            // 7.4 给大盒子添加鼠标离开事件
+            slider.addEventListener("mouseleave", function () {
+                // 7.5 鼠标每次离开之前先清除定时器
+                clearInterval(timerId);
+                // 7.6 鼠标离开开启定时器
+                timerId = setInterval(function () {
+                    // 7.7 模拟点击右箭头
+                    next.click();
+                }, 1000);
+            });
+            // 8.点击下面小圆点就切换到哪一张图片
+            // 8.1 获取到所有的小li
+            const lis = document.querySelectorAll(".slider-indicator li");
+            // 8.2 遍历伪数组
+            for (let j = 0; j < lis.length; j++) {
+                // 8.3 给所有的li注册点击事件
+                lis[j].addEventListener("click", function () {
+                    // 8.4 调用render函数，将参数传入
+                    render(j);
+                    // 8.5 将变量j赋值给变量i
+                    i = j;
+                });
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+        h1{
+            font-size: 100px;
+            letter-spacing: 20px;
+            color: white;
+
+            text-shadow: 
+            0 0 10px aqua,
+            0 0 20px aqua,
+            0 0 40px aqua,
+            0 0 80px aqua;
+            animation: text1 5s linear infinite;
+        }
+        body{
+            background-color: rgb(35, 7, 57);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @keyframes text1{
+            to{
+                filter:hue-rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Welcome!</h1>
+    </div>
+</body>
+</html>

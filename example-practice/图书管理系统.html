@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="./lib/form-serialize.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            header {
+                height: 80px;
+                background-color: rgb(2, 2, 43);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            h1 {
+                color: azure;
+            }
+            .table {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            table {
+                border-spacing: 0;
+                border-collapse: collapse;
+                margin: 5em;
+            }
+            th {
+                height: 30px;
+                border: white 2px solid;
+                background-color: rgb(180, 180, 180);
+                color: white;
+            }
+            td {
+                height: 40px;
+                border-bottom: rgba(128, 128, 128, 0.468) 2px solid;
+                font-size: 12px;
+            }
+            .form {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>图书管理系统</h1>
+        </header>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 100px">ID</th>
+                        <th style="width: 300px">书名</th>
+                        <th style="width: 150px">作者</th>
+                        <th style="width: 200px">出版社</th>
+                        <th style="width: 100px">操作</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody"></tbody>
+            </table>
+        </div>
+        <div class="form">
+            <form class="add-form">
+                <input type="hidden" class="id" name="id" />
+                <br />
+                <label for="bookname">书名</label>
+                <input
+                    class="bookName"
+                    type="text"
+                    placeholder="请输入书籍名称"
+                    name="bookname"
+                />
+                <br />
+                <label for="author">作者</label>
+                <input
+                    class="author"
+                    type="text"
+                    placeholder="请输入作者名称"
+                    name="author"
+                />
+                <br />
+                <label for="publisher">出版社</label>
+                <input
+                    class="publisher"
+                    type="text"
+                    placeholder="请输入出版社名称"
+                    name="publisher"
+                />
+                <br />
+                <button type="submit" class="add-btn">提交</button>
+            </form>
+        </div>
+        <script>
+            //渲染函数
+            function randerInfo() {
+                axios({
+                    method: "get",
+                    url: "http://hmajax.itheima.net/api/books",
+                    params: {
+                        creator: "TeddiZen",
+                    },
+                }).then((result) => {
+                    console.log(result.data.data);
+                    document.querySelector("tbody").innerHTML = result.data.data
+                        .map(({ id, bookname, author, publisher }) => {
+                            return `
+                            <tr>
+                                <td>${id}</td>
+                                <td>${bookname}</td>
+                                <td>${author}</td>
+                                <td>${publisher}</td>
+                                <td>
+                                    <a href="javascript:;" data-id="${id}" class="del">删除</a>
+                                    <a href="javascript:;" data-id="${id}" class="add">编辑</a>
+                                </td>
+                            </tr>
+                    `;
+                        })
+                        .join("");
+                });
+            }
+            randerInfo();
+            console.log(document.querySelector(".add-btn"));
+            //增加函数
+            document
+                .querySelector(".add-btn")
+                .addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const bookname = document.querySelector(".bookName").value;
+                    const author = document.querySelector(".author").value;
+                    const publisher =
+                        document.querySelector(".publisher").value;
+                    axios({
+                        method: "post",
+                        url: "https://hmajax.itheima.net/api/books",
+                        data: {
+                            bookname,
+                            author,
+                            publisher,
+                            creator: "TeddiZen",
+                        },
+                    }).then(randerInfo());
+                });
+            //删除函数
+            document.querySelector(".tbody").addEventListener("click", (e) => {
+                console.log(e.target.dataset.id);
+                axios({
+                    method: "delede",
+                    url: `http://hmajax.itheima.net/api/books/${e.target.dataset.id}`,
+                    data: {
+                        id: `${e.target.dataset.id}`,
+                    },
+                })
+                    .then(randerInfo())
+                    .catch((result) => {
+                        console.log(result);
+                    });
+            });
+        </script>
+    </body>
+</html>

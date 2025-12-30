@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>哲迪君的CSS学习草稿</title>
+    <style>
+        #test_Title{
+            color:blue;
+            text-align: center;
+        }
+        #test_P{
+            color: chartreuse;
+        }
+        #span_Lorem{
+            background-color: aqua;
+            font-size: 24px;
+            line-height: 1.5em;
+            font-style: italic;
+            font-family: '宋体',serif;
+            letter-spacing: 3px;
+            text-decoration: underline;
+            font-weight: 500;
+            text-indent: 2em;
+        }
+        #em_Center{
+            text-align: center;
+            font-weight: 900;
+        }
+        a:link{
+            color: aquamarine;
+        }
+        a:visited{
+            color: blue;
+        }
+        a:hover{
+            color: chartreuse;
+        }
+        a:active{
+            color: brown;
+        }
+    </style>
+    <link rel="stylesheet" href="./decorate.css">
+</head>
+<body>
+    <p id="test_P">测试p标签</p>
+    <p style="color: red ;width: 300px;font-size: 30px;">内联</p>
+    <h1 id="test_Title">测试ID标题</h1>
+    <span>测试span<b>外联</b>标签</span>
+    <hr>
+    <div>
+        <span id="span_Lorem">
+            Lorem ipsum dolor 这个是中文测试 sit amet consectetur adipisicing elit. Laboriosam similique debitis ratione nostrum? Harum fugit, illo debitis maiores numquam ipsum porro assumenda nihil animi eius, sapiente eaque laudantium, sunt soluta.
+        </span>
+    </div>
+    <br>
+    <div>
+        <p id="em_Center">居中测试</p>
+    </div>
+    <hr>
+    <a href="https://cn.bing.com/" id="link_Style" target="_blank">测试跳转链接style（跳转bing）</a>
+</body>
+</html>
