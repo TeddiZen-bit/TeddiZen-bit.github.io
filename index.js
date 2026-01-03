@@ -56,18 +56,9 @@
     let s = document.querySelector('.sec');
     function fnTime() {
         let time = +Date.now() / 1000;
-        s.innerHTML =
-            parseInt(time % 60) < 10
-                ? '0' + parseInt(time % 60)
-                : parseInt(time % 60);
-        m.innerHTML =
-            parseInt(time / 60) % 60 < 10
-                ? '0' + (parseInt(time / 60) % 60)
-                : parseInt(time / 60) % 60;
-        h.innerHTML =
-            parseInt(((time / 60 / 60) % 24) + 8) < 10
-                ? '0' + parseInt(((time / 60 / 60) % 24) + 8)
-                : parseInt(((time / 60 / 60) % 24) + 8);
+        s.innerHTML = parseInt(time % 60) < 10 ? '0' + parseInt(time % 60) : parseInt(time % 60);
+        m.innerHTML = parseInt(time / 60) % 60 < 10 ? '0' + (parseInt(time / 60) % 60) : parseInt(time / 60) % 60;
+        h.innerHTML = parseInt(((time / 60 / 60) % 24) + 8) < 10 ? '0' + parseInt(((time / 60 / 60) % 24) + 8) : parseInt(((time / 60 / 60) % 24) + 8);
     }
     fnTime();
     setInterval(fnTime, 1000);
@@ -79,8 +70,7 @@
         if (pageYOffset > page2.offsetTop - 600) {
             backHead.style.display = 'block';
             if (pageYOffset < page2.offsetTop) {
-                backHead.style.opacity =
-                    1 - (page2.offsetTop - pageYOffset) / 600;
+                backHead.style.opacity = 1 - (page2.offsetTop - pageYOffset) / 600;
             }
         } else {
             backHead.style.display = 'none';
@@ -184,4 +174,26 @@
             right.click();
         }, 2000);
     });
+}
+//渲染
+{
+    const project = [
+        './example-practice/color-txst.html',
+        './example-practice/Layout.html',
+        './example-practice/table.html',
+        './example-practice/窗口拖拽.html',
+        './example-practice/放大镜.html',
+        './example-practice/图书管理系统.html',
+        './example-practice/select.html',
+        './example-practice/newtable.html',
+    ];
+    document.querySelector('.project-ul').innerHTML = project
+        .map((item) => {
+            return `
+        <li class="project-li">
+            <a class="project-a" href=${item} target="_blank">${item.match(/\/([^\/]+)\.html$/)[1]}</a>
+        </li>
+        `;
+        })
+        .join('');
 }
