@@ -197,3 +197,29 @@
         })
         .join('');
 }
+//个人B站展示
+{
+    async function MyBilibili() {
+        const result = await axios({
+            method: 'get',
+            url: 'https://uapis.cn/api/v1/social/bilibili/archives',
+            params: {
+                mid: '398617955',
+            },
+        });
+        console.log(result);
+        document.querySelector('.bilibili-work').innerHTML = result.data.videos
+            .map((item) => {
+                return `
+            <a href= "https://www.bilibili.com/video/${item.bvid}" target="_blank" class="A">
+                <div class="inner">
+                    <img src="${item.cover}" alt="这就是老二次元的实力吗" class="video-img" />
+                    <samp class="video-title">${item.title}</samp>
+                </div>
+            </a>
+            `;
+            })
+            .join('');
+    }
+    MyBilibili();
+}
