@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    </head>
+    <body>
+        <li class="testLi" v-for="(item,index) in items">
+            <div>{{index}}</div>
+        </li>
+        <script>
+            const arr = ["one", "two", "three"];
+            const testLi = Vue({
+                el: ".testLi",
+                data: {
+                    arr,
+                },
+            });
+        </script>
+    </body>
+</html>

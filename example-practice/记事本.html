@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ch">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>记事本</title>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .container {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 300px;
+            }
+
+            .title {
+                text-align: center;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            .input-area {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .note-input {
+                flex: 1;
+                padding: 10px;
+                margin-right: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .add-button {
+                padding: 10px 20px;
+                background-color: #28a745;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .add-button:hover {
+                background-color: #218838;
+            }
+
+            .todo-list {
+                list-style-type: none;
+                font-family: fangsong;
+            }
+
+            .list-li {
+                height: 30px;
+                background-color: #33333321;
+                padding: 5px 10px;
+                margin: 10px;
+
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                border-radius: 5px;
+            }
+
+            .info-index {
+                color: #28a745;
+                font-size: 30px;
+                font-family: "Courier New", Courier, monospace;
+            }
+
+            .del {
+                height: 25px;
+                width: 40px;
+                background-color: #e90707;
+                color: #fff;
+                border: none;
+                border-radius: 2px;
+                cursor: pointer;
+
+                position: absolute;
+                right: 5px;
+            }
+
+            .now {
+                position: relative;
+                display: flex;
+            }
+
+            .now p {
+                font-size: 14px;
+            }
+
+            .delAll {
+                position: absolute;
+                right: 5px;
+
+                height: 30px;
+                width: 100px;
+                background-color: #e90707;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="title">记事本</h1>
+            <div class="input-area">
+                <input v-model="info" type="text" id="note-input" class="note-input" placeholder="请输入记事内容" />
+                <button @click="add" id="add-button" class="add-button">添加事件</button>
+            </div>
+            <div class="todo">
+                <ul class="todo-list">
+                    <li class="list-li" v-for="(item,index) in list" :key="item.index">
+                        <div class="list-info"><span class="info-index">{{index+1}} </span>{{item.info}}</div>
+                        <button @click="del(item.index)" class="del">删除</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="now" v-show="list.length">
+                <p>共{{list.length}}个任务</p>
+                <button @click="delAll()" class="delAll">删除全部</button>
+            </div>
+        </div>
+        <script>
+            const list = [
+                { index: 1, info: "test1" },
+                { index: 2, info: "test2" },
+                { index: 3, info: "test3" },
+            ];
+            const app = new Vue({
+                el: ".container",
+                data: {
+                    list,
+                    info: "",
+                },
+                methods: {
+                    del(it) {
+                        this.list = this.list.filter((item) => item.index !== it);
+                    },
+                    add() {
+                        if (this.info.trim()) {
+                            this.list.unshift({ index: +new Date(), info: this.info });
+                            this.info = "";
+                        } else {
+                            alert("请输入文本");
+                        }
+                    },
+                    delAll() {
+                        this.list = [];
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
