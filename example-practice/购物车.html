@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>购物车示例</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            .shopping-cart {
+                width: 600px;
+                margin: 0 auto;
+                border: 1px solid #ccc;
+                padding: 20px;
+                border-radius: 5px;
+            }
+            .cart-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            .cart-header input[type="checkbox"] {
+                margin-right: 10px;
+            }
+            .cart-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+            }
+            .cart-item:last-child {
+                border-bottom: none;
+            }
+            .item-details {
+                display: flex;
+                align-items: center;
+            }
+            .item-name {
+                margin-left: 10px;
+            }
+            .quantity-control {
+                display: flex;
+                align-items: center;
+            }
+            .quantity-control button {
+                width: 30px;
+                height: 30px;
+                border: 1px solid #ccc;
+                background-color: #f8f8f8;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            .quantity-control button:hover {
+                background-color: #ddd;
+            }
+            .quantity-input {
+                width: 50px;
+                text-align: center;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin: 0 10px;
+            }
+            .total-section {
+                margin-top: 30px;
+                text-align: right;
+            }
+            .submit-btn {
+                margin-top: 20px;
+                padding: 10px 20px;
+                background-color: #28a745;
+                color: white;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            .submit-btn:hover {
+                background-color: #218838;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="shopping-cart">
+            <div class="cart-header">
+                <input type="checkbox" id="selectAll" v-model="isAll" />
+                <label for="selectAll">全选</label>
+            </div>
+            <div class="cart-item" v-for="(item,index) in shopList" :key="item.id">
+                <div class="item-details">
+                    <input type="checkbox" v-model="item.isChecked" />
+                    <span class="item-name">{{item.name}}</span>
+                </div>
+                <span class="item-price">单价: ¥{{item.prise}}</span>
+                <div class="quantity-control">
+                    <button @click="left(index)" :disabled="item.const == 0">-</button>
+                    <input type="text" class="quantity-input" disabled :value="item.const" />
+                    <button @click="right(index)">+</button>
+                </div>
+            </div>
+            <div class="total-section">
+                <span>总计: ¥{{ sumPrise }}</span>
+            </div>
+            <button class="submit-btn">提交订单</button>
+        </div>
+        <script>
+            const shopList = [
+                { id: 1, name: "apple", prise: 100, const: 0, isChecked: false },
+                { id: 2, name: "banana", prise: 250, const: 0, isChecked: false },
+                { id: 3, name: "pair", prise: 150, const: 0, isChecked: false },
+            ];
+            const app = new Vue({
+                el: ".shopping-cart",
+                data: {
+                    shopList,
+                    sum: 0,
+                },
+                methods: {
+                    left(index) {
+                        this.shopList[index].const--;
+                    },
+                    right(index) {
+                        this.shopList[index].const++;
+                    },
+                },
+                computed: {
+                    sumPrise() {
+                        return this.shopList.filter((item) => item.isChecked).reduce((tal, item) => tal + item.prise * item.const, 0);
+                    },
+                    isAll: {
+                        get() {
+                            return this.shopList.every((item) => item.isChecked);
+                        },
+                        set(value) {
+                            this.shopList.forEach((item) => (item.isChecked = value));
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

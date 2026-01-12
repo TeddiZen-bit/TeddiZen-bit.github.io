@@ -187,6 +187,7 @@
         './example-practice/select.html',
         './example-practice/newtable.html',
         './example-practice/记事本.html',
+        './example-practice/购物车.html',
     ];
     document.querySelector('.project-ul').innerHTML = project
         .map((item) => {
